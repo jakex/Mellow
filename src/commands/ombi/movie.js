@@ -29,7 +29,7 @@ function outputMovie(msg, movie) {
 function requestMovie(ombi, msg, movieMsg, movie) {
 	// check if user has request role and if it's not available, requested and approved
 	if ((!ombi.requestmovie || msg.member.roles.some(role => role.name === ombi.requestmovie)) && (!movie.available && !movie.requested && !movie.approved)) {
-		msg.reply('If you want to request this movie please click on the ⬇ reaction.');
+		msg.reply('If you want to request this movie please click on the ⬇ reaction in the message above.');
 		movieMsg.react('⬇');
 		
 		// wait for user reaction
@@ -126,7 +126,7 @@ module.exports = class searchMovieCommand extends commando.Command {
 
 				// output search results in embed
 				movieEmbed.setTitle('Ombi Movie Search')
-				.setDescription('Please select one of the search results. To abort answer **cancel**')
+				.setDescription('Please select one of the search results (type the number). To abort answer **cancel**')
 				.addField('__Search Results__', fieldContent);
 				msg.embed(movieEmbed);
 

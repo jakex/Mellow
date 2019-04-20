@@ -31,7 +31,7 @@ function outputTVShow(msg, show) {
 function requestTVShow(ombi, msg, showMsg, show) {
 	// check if user has request role and if it's not available, requested and approved
 	if ((!ombi.requesttv || msg.member.roles.some(role => role.name === ombi.requesttv)) && (!show.available && !show.requested && !show.approved)) {
-		msg.reply('If you want to request this tv show please click on the ⬇ reaction.');
+		msg.reply('If you want to request this tv show please click on the ⬇ reaction in the message above.');
 		showMsg.react('⬇');
 		
 		// wait for user reaction
@@ -128,7 +128,7 @@ module.exports = class searchTVCommand extends commando.Command {
 
 				// output search results in embed
 				showEmbed.setTitle('Ombi TV Show Search')
-				.setDescription('Please select one of the search results. To abort answer **cancel**')
+				.setDescription('Please select one of the search results (type the number). To abort answer **cancel**')
 				.addField('__Search Results__', fieldContent);
 				msg.embed(showEmbed);
 
