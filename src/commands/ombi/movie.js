@@ -37,6 +37,8 @@ function requestMovie(ombi, msg, movieMsg, movie) {
 		.then(collected => {
 			// request movie in ombi
 			if (collected.first()) {
+				let ourl = 'http://' + ombi.host + ((ombi.port) ? ':' + ombi.port : '') + '/api/v1/Request/movie/'
+				console.log(ourl);
 				post({
 					headers: {'accept' : 'application/json',
 					'Content-Type' : 'application/json',
@@ -44,7 +46,7 @@ function requestMovie(ombi, msg, movieMsg, movie) {
 					'ApiAlias' : `${msg.author.username} (${msg.author.id})`,
 					'UserName' : (ombi.username !== "") ? ombi.username : '',
 					'User-Agent': `Mellow/${process.env.npm_package_version}`},
-					url: 'http://' + ombi.host + ((ombi.port) ? ':' + ombi.port : '') + '/api/v1/Request/movie/',
+					url: ourl,
 					body: JSON.stringify({ "theMovieDbId": movie.theMovieDbId })
 				}).then((resolve) => {
 					return msg.reply(`Requested ${movie.title} in Ombi.`);
